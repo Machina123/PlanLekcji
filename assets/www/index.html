@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <script src="lib\jquery-1.11.1.min.js"></script>
+        <script src="lib\jquery.mobile.custom.js"></script>
+        <link rel="stylesheet" type="text/css" href="css\main.css" />
+        <link rel="stylesheet" type="text/css" href="css\mainpage.css" />
+        <title>Plan Lekcji - Patryk Ciepiela</title>
+    </head>
+    <body>
+        <!-- SKRYPT JS -->
+        <script type="text/javascript">
+            $(document).ready(function () {
+                var baseWidth = $(window).innerWidth();
+                var fontWidth = baseWidth / 15;
+
+                $("#clock").css("font-size", fontWidth + "px");
+
+                window.setInterval(function () {
+                    var data = new Date();
+                    var czas = "";
+
+                    if (data.getHours() < 10) {
+                        czas += "0" + data.getHours();
+                    } else {
+                        czas += data.getHours();
+                    }
+
+                    if (data.getMilliseconds() < 500) {
+                        czas += ":"
+                    } else {
+                        czas += " ";
+                    }
+
+                    if (data.getMinutes() < 10) {
+                        czas += "0" + data.getMinutes();
+                    } else {
+                        czas += data.getMinutes();
+                    }
+
+                    $("#clock").html(czas);
+                    
+                }, 25);
+            });
+        </script>
+
+        <!--    ##### STRONA GŁÓWNA #####    -->
+        <div id="mainPage">
+            <div id="clock"></div>
+            
+            <div id="menu">
+                <table id="menuTbl">
+                    <tr>
+                        <td id="gotoSettings"><img src="img\settings.png" alt=""/>ustawienia</td>
+                        <td id="gotoToday"></td>
+                        <td id="gotoWeekly"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- Cordova ładuje się jako ostatnia -->
+        <script type="text/javascript" src="lib\cordova.js"></script>
+    </body>
+</html>
